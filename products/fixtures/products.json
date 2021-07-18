@@ -1,0 +1,50 @@
+[
+{
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+        "title": "Camisa para caballero",
+        "description": "Lorem ipsum dolor sit amet consectetur",
+        "price": "29.00",
+        "slug": "camisa-para-caballero",
+        "create_at": "2021-05-24T01:17:16.817Z",
+        "image": "products/home-slider_carnicos_ok_.png"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+        "title": "Producto 2",
+        "description": "nuevo producto de prueba",
+        "price": "12.00",
+        "slug": "producto-2",
+        "create_at": "2021-05-24T01:38:33.258Z",
+        "image": "products/home-slider_lácteos_ok.png"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+        "title": "producto 3",
+        "description": "este es un nuevo producto 3",
+        "price": "10.00",
+        "slug": "producto-3",
+        "create_at": "2021-05-24T01:39:08.338Z",
+        "image": "products/snacks_home_slide_ok.png"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+        "title": "comida sana",
+        "description": "este producto es de comida sana",
+        "price": "5.00",
+        "slug": "comida-sana",
+        "create_at": "2021-05-24T01:39:51.969Z",
+        "image": "products/home-slider_ldi-horeca_ok.png"
+    }
+}
+]
