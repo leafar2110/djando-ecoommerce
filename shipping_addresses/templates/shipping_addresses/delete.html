@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+        <div class="col">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="h4">Estas seguro de que desea eliminar la direccion?</div>
+                <input class="btn btn-danger" type="submit" name="" value="Eliminar">
+            </form>
+        </div>
+{% endblock %}

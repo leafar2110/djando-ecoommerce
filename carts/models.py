@@ -6,6 +6,7 @@ from products.models import Product
 from django.db.models.signals import pre_save
 from django.db.models.signals import post_save
 from django.db.models.signals import m2m_changed
+
 # Create your models here.
 
 class Cart(models.Model):
