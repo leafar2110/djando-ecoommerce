@@ -39,6 +39,10 @@ class User(AbstractUser):
     def has_shipping_address(self):
         return self.shipping_address is not None
 
+    @property
+    def addresses(self):
+        return self.shippingaddress_set.all()
+
 
 class Customer(User):
     class Meta:
@@ -50,3 +54,4 @@ class Customer(User):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField()
+

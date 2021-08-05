@@ -12,10 +12,10 @@ def get_or_create_order(cart, request):
     
     return order
 
-def breadcrumb( product=True, addres=False, payment=False, confirmation=False ):
+def breadcrumb( product=True, address=False, payment=False, confirmation=False ):
     return [
         {'title':'Productos', 'active':product, 'url': reverse('orders:order')},
-        {'title':'Direcciones', 'active':addres, 'url': reverse('orders:order')},
+        {'title':'Direcciones', 'active':address, 'url': reverse('orders:address')},
         {'title':'Pago', 'active':payment, 'url': reverse('orders:order')},
         {'title':'Confirmacion', 'active':confirmation, 'url': reverse('orders:order')}
     ]
