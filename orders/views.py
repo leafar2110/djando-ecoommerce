@@ -1,18 +1,30 @@
+import threading
 from django.shortcuts import render
 from django.contrib import messages
 from django.shortcuts import redirect
+from django.db import transaction
 from django.shortcuts import get_object_or_404
 from carts.utils import get_or_create_cart
 from carts.utils import destroy_cart
+from .mails import Mail
 from .models import Order
 from shipping_addresses.models import ShippingAddress
 from .utils import get_or_create_order
 from .utils import breadcrumb
 from .utils import destroy_order
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+from django.db.models.query import EmptyQuerySet
+from django.views.generic.list import ListView
 from .decorators import validate_cart_and_order
 
+class OrderListView(LoginRequiredMixin, ListView):
+    login_url = 'login'
+    template_name = 'orders/orders.html'
 
+    def get_queryset(self):
+        return self.request.user.orders_completed()
 
 @login_required(login_url='login')
 def order(request):
@@ -65,9 +77,8 @@ def check_address(request, cart, order, pk):
 
 
 @login_required(login_url='login')
-def confirm(request):
-    cart = get_or_create_cart(request)
-    order = get_or_create_order(cart, request)
+@validate_cart_and_order
+def confirm(request, cart, order):
     shipping_address = order.shipping_address
 
     if shipping_address is None:
@@ -98,15 +109,17 @@ def cancel(request, cart, order):
     return redirect('index')
 
 @login_required(login_url='login')
-def complete(request):
-    cart = get_or_create_cart(request)
-    order = get_or_create_order(cart, request)
-
+@validate_cart_and_order
+def complete(request, cart, order):
     if request.user.id != order.user_id:
         return redirect('carts:cart')
 
-    order.complete()
+    thread = threading.Thread(target=Mail.send_complete_order, args=(
+        order, request.user
+    ))
+    thread.start()
 
+    order.complete()
 
     destroy_cart(request)
     destroy_cart(request)

@@ -16,11 +16,8 @@ class ShippingAddressForm(ModelForm):
             'state': 'Estado',
             'postal_code': 'Codigo postal',
             'referennce': 'Punto de referencia'
-
         }
             
-        
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

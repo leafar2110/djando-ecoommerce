@@ -33,10 +33,12 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'orders',
+    'charges',
     'carts',
     'users',
     'products',
     'categories',
+    'promo_codes',
     'shipping_addresses',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -122,6 +124,14 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+from decouple import config
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'leafar.qr@gmail.com'
+EMAIL_HOST_PASSWORD = 'di mi clave' #Env
+EMAIL_USE_TLS = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
